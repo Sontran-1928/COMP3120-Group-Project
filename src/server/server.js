@@ -34,7 +34,7 @@ const FUEL_TYPES = ['E10-U91', 'E10', 'U91', 'E85', 'P95-P98', 'P95', 'P98',
 // stores the current oauth token for the fuel api.
 let FuelOauthToken = ''
 
-//app.use(express.static("build"))
+app.use(express.static("build"))
 
 // sets CORS middleware.
 app.use(cors())
@@ -612,7 +612,7 @@ const getFuelAccessToken = () => {
 setInterval(getFuelAccessToken, REFRESH_TOKEN_TIME)
 
 // port number
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3000
 
 app.listen(port, () => {
   getFuelAccessToken()
