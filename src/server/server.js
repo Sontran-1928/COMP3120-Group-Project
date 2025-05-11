@@ -42,7 +42,7 @@ app.use(cors())
 // sets json middleware parser
 app.use(express.json())
 
-app.use(express.static('build'))
+//app.use(express.static('build'))
 
 /*
 middleware that intercepts all requests and checks if
