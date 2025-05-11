@@ -28,7 +28,7 @@ const CreateMap = () => {
   const URL = '/api/'
   const location = useLocation()
 
-  useEffect(async () => {
+  useEffect(() => {
     // if statement is used to prevent infinite loop.
     if (fuelType.length < 1) {
       fetchFuelType()
@@ -128,7 +128,7 @@ const CreateMap = () => {
 
     // Use the server to fetch all the traffic hazards locations.
     // Add additional data such as street name, type, advices and more for popup uses.
-    await axios.get(URL + 'regional-lga-incident/open', {
+    axios.get(URL + 'regional-lga-incident/open', {
       headers: {
         apikey: process.env.REACT_APP_API_KEY
       }
