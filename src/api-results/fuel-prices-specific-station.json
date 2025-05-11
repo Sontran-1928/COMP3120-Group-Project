@@ -1,0 +1,29 @@
+{
+    "prices": [
+        {
+            "fueltype": "E10",
+            "price": 199.9,
+            "lastupdated": "15/10/2023 22:10:16"
+        },
+        {
+            "fueltype": "U91",
+            "price": 201.9,
+            "lastupdated": "15/10/2023 22:10:15"
+        },
+        {
+            "fueltype": "P95",
+            "price": 213.9,
+            "lastupdated": "15/10/2023 22:08:08"
+        },
+        {
+            "fueltype": "PDL",
+            "price": 219.9,
+            "lastupdated": "28/09/2023 02:38:20"
+        },
+        {
+            "fueltype": "P98",
+            "price": 221.9,
+            "lastupdated": "15/10/2023 22:10:16"
+        }
+    ]
+}
