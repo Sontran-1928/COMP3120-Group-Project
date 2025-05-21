@@ -46,7 +46,7 @@ jobs:
         npm install
         npm run build --if-present
         npm run server
-        env:
+      env:
           API_KEY: ${{ secrets.API_KEY }}
           FUEL_API_KEY: ${{ secrets.FUEL_API_KEY }}
           FUEL_API_SECRET_DEVELOPMENT: ${{ secrets.FUEL_API_SECRET_DEVELOPMENT }}
