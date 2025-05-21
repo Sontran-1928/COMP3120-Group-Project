@@ -45,6 +45,9 @@ jobs:
       run: |
         npm install
         npm run build --if-present
+        npm run server
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp
