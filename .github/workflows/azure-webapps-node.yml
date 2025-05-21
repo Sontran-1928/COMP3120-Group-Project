@@ -51,6 +51,8 @@ jobs:
           FUEL_API_KEY: ${{ secrets.FUEL_API_KEY }}
           FUEL_API_SECRET_DEVELOPMENT: ${{ secrets.FUEL_API_SECRET_DEVELOPMENT }}
           FUEL_API_URL: ${{ secrets.FUEL_API_URL }}
+          FUEL_API_AUTHORIZATION_HEADER: ${{ secrets.FUEL_API_AUTHORIZATION_HEADER }}
+          REACT_APP_FUEL_API_AUTHORIZATION_HEADER: ${{ secrets.REACT_APP_FUEL_API_AUTHORIZATION_HEADER }}
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp
