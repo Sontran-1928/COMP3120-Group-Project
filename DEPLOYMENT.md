@@ -107,7 +107,7 @@ The project is defaulted to deployed for production end, therefore a few things 
 6.  Set a proper name in the `Name` section
 7.  Ensure `Branch` section is set to 'main'
 8.  In the `Build Command` section, change to `npm install && npm run build`
-9.  In the `Start Command` section, change to `npm run server`
+9.  In the `Start Command` section, change to `npm start`
 10. At the bottom of the page, press on `Advanced` and a few more options will display.
 11. Select `Add Secret File`
 12. At the `Filename` bar, add ".env"

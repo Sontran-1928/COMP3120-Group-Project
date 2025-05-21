@@ -1,2 +1,4 @@
 {
+    "appService.defaultWebAppToDeploy": "/subscriptions/7f0eb1a4-fc6b-410a-bbd0-c37f4aa9fae2/resourceGroups/NSW-ToolBox_group/providers/Microsoft.Web/sites/NSW-ToolBox",
+    "appService.deploySubpath": "."
 }
