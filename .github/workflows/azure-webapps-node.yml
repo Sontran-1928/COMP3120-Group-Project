@@ -48,6 +48,9 @@ jobs:
         npm run server
         env:
           API_KEY: ${{ secrets.API_KEY }}
+          FUEL_API_KEY: ${{ secrets.FUEL_API_KEY }}
+          FUEL_API_SECRET_DEVELOPMENT: ${{ secrets.FUEL_API_SECRET_DEVELOPMENT }}
+          FUEL_API_URL: ${{ secrets.FUEL_API_URL }}
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp
