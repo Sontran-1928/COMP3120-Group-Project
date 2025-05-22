@@ -4,6 +4,18 @@ const app = express()
 const apicache = require('apicache')
 const axios = require('axios')
 const cors = require('cors')
+const az_identity = require('@azure/identity');
+const az_kv = require('@azure/keyvault-secrets');
+
+const credential = new az_identity.DefaultAzureCredential();
+const client = new az_kv.SecretClient('https://newsecretvault.vault.azure.net/', credential)
+
+client.getSecret('APIKEY').then(res =>{
+  console.log(res);
+}).catch(err => {
+  console.log("error occurred, ", err)
+});
+
 require('dotenv').config()
 
 // 36000000 = 10 hours in milliseconds used to refresh fuel oauth token.
@@ -13,16 +25,16 @@ const REFRESH_TOKEN_TIME = 36000000
 const cache = apicache.middleware
 
 // base urls for hazards and fuel api retrieved from .env
-const FUEL_API_BASE = process.env.FUEL_API_URL
-const LIVE_TRAFFIC_API_BASE = process.env.LIVE_TRAFIC_API_URL
+const FUEL_API_BASE = process.env.FUELAPIURL
+const LIVE_TRAFFIC_API_BASE = process.env.LIVETRAFICAPIURL
 
 // api keys for both hazards and fuel apis along with api key needed for clients.
-const API_KEY = process.env.API_KEY
-const LIVE_TRAFFIC_API_KEY = process.env.LIVE_TRAFFIC_HAZARDS_API_KEY
-const FUEL_API_KEY = process.env.FUEL_API_KEY
+const APIKEY = process.env.APIKEY
+const LIVE_TRAFFIC_APIKEY = process.env.LIVETRAFFICHAZARDSAPIKEY
+const FUEL_APIKEY = process.env.FUELAPIKEY
 
 // authorization header for fuel api that is sent with each request.
-const FUEL_API_AUTHORIZATION_HEADER = process.env.FUEL_API_AUTHORIZATION_HEADER
+const FUELAPIAUTHORIZATIONHEADER = process.env.FUELAPIAUTHORIZATIONHEADER
 
 // used to keep track of current transactionId that is sent with each request to fuel api.
 let transactionid = 1
@@ -34,7 +46,7 @@ const FUEL_TYPES = ['E10-U91', 'E10', 'U91', 'E85', 'P95-P98', 'P95', 'P98',
 // stores the current oauth token for the fuel api.
 let FuelOauthToken = ''
 
-app.use(express.static("build"))
+//app.use(express.static("build"))
 
 // sets CORS middleware.
 app.use(cors())
@@ -42,7 +54,7 @@ app.use(cors())
 // sets json middleware parser
 app.use(express.json())
 
-//app.use(express.static('build'))
+app.use(express.static('build'))
 
 /*
 middleware that intercepts all requests and checks if
@@ -55,7 +67,7 @@ app.use('/api/*', (req, res, next) => {
   // returns 401 if there is no token or token is incorrect otherwise continues.
   if (token === undefined) {
     res.status(401).send('Failed to authenticate please provide a api key')
-  } else if (token !== API_KEY) {
+  } else if (token !== APIKEY) {
     res
       .status(401)
       .send('Failed to authenticate please provide a valid api key')
@@ -89,7 +101,7 @@ app.get('/api/incident/open', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/incident/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -121,7 +133,7 @@ app.get('/api/incident/open/:suburb', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/incident/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -149,7 +161,7 @@ app.get('/api/alpine/open', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/alpine/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -173,7 +185,7 @@ app.get('/api/fire/open', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/fire/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -197,7 +209,7 @@ app.get('/api/flood/open', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/flood/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -221,7 +233,7 @@ app.get('/api/majorevent/open', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/majorevent/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -245,7 +257,7 @@ app.get('/api/roadwork/open', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/roadwork/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -269,7 +281,7 @@ app.get('/api/regional-lga-incident/open', (req, res) => {
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/regional-lga-incident/open', {
       headers: {
-        Authorization: `apikey ${LIVE_TRAFFIC_API_KEY}`,
+        Authorization: `apikey ${LIVE_TRAFFIC_APIKEY}`,
         Accept: 'application/json'
       }
     })
@@ -301,7 +313,7 @@ app.get('/api/fuel/prices', (req, res) => {
         Authorization: `Bearer ${FuelOauthToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json charset=utf-8',
-        apikey: FUEL_API_KEY,
+        apikey: FUEL_APIKEY,
         transactionid,
         requesttimestamp: getTodaysDate()
       }
@@ -339,7 +351,7 @@ app.get('/api/fuel/prices/:fueltype', (req, res) => {
         Authorization: `Bearer ${FuelOauthToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json charset=utf-8',
-        apikey: FUEL_API_KEY,
+        apikey: FUEL_APIKEY,
         transactionid,
         requesttimestamp: getTodaysDate()
       }
@@ -381,7 +393,7 @@ app.get('/api/fuel/location/:location', (req, res) => {
         Authorization: `Bearer ${FuelOauthToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json charset=utf-8',
-        apikey: FUEL_API_KEY,
+        apikey: FUEL_APIKEY,
         transactionid,
         requesttimestamp: getTodaysDate(),
         'if-modified-since': '09/10/2023'
@@ -419,7 +431,7 @@ app.get('/api/fuel/lovs', (req, res) => {
         Authorization: `Bearer ${FuelOauthToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json charset=utf-8',
-        apikey: FUEL_API_KEY,
+        apikey: FUEL_APIKEY,
         transactionid,
         requesttimestamp: getTodaysDate(),
         'if-modified-since': getYesterdaysDate()
@@ -452,7 +464,7 @@ app.get('/api/fuel/prices/new', (req, res) => {
         Authorization: `Bearer ${FuelOauthToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json charset=utf-8',
-        apikey: FUEL_API_KEY,
+        apikey: FUEL_APIKEY,
         transactionid,
         requesttimestamp: getTodaysDate()
       }
@@ -494,7 +506,7 @@ app.get('/api/fuel/prices/station/:stationcode', (req, res) => {
           Authorization: `Bearer ${FuelOauthToken}`,
           Accept: 'application/json',
           'Content-Type': 'application/json charset=utf-8',
-          apikey: FUEL_API_KEY,
+          apikey: FUEL_APIKEY,
           transactionid,
           requesttimestamp: getTodaysDate()
         }
@@ -540,7 +552,7 @@ app.post('/api/fuel/prices/location', (req, res) => {
         Authorization: `Bearer ${FuelOauthToken}`,
         Accept: 'application/json',
         'Content-Type': 'application/json charset=utf-8',
-        apikey: FUEL_API_KEY,
+        apikey: FUEL_APIKEY,
         transactionid,
         requesttimestamp: getTodaysDate()
       }
@@ -587,13 +599,14 @@ returns: all petrol stations with that fuel type in that suburb/postcode
 */
 const getFuelAccessToken = () => {
   // calls nsw gov fuel API to authenticate
+  console.log("testing getting access token")
   axios
     .get(
       FUEL_API_BASE +
         '/oauth/client_credential/accesstoken?grant_type=client_credentials',
       {
         headers: {
-          Authorization: FUEL_API_AUTHORIZATION_HEADER,
+          Authorization: FUELAPIAUTHORIZATIONHEADER,
           Accept: 'application/json'
         }
       }
@@ -601,6 +614,7 @@ const getFuelAccessToken = () => {
     .then((response) => {
       // sets fuel token from response
       FuelOauthToken = response.data.access_token
+      console.log("access token got", FuelOauthToken)
     })
     .catch((error) => {
       // log error to console
