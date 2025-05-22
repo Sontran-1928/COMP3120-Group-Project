@@ -303,12 +303,6 @@ returns all current prices across all stations and petrol types in NSW.
 
 app.get('/api/fuel/prices', (req, res) => {
   // calls nsw gov fuel API
-  client.getSecret('APIKEY').then(res =>{
-    console.log(res);
-  }).catch(err => {
-    console.log("error occurred, ", err)
-  });
-  
   axios
     .get(FUEL_API_BASE + '/FuelPriceCheck/v2/fuel/prices', {
       headers: {
@@ -426,7 +420,7 @@ returns all current fuel stations along with fueltypes and station brands.
 */
 app.get('/api/fuel/lovs', (req, res) => {
   // calls nsw gov fuel API
-
+  console.log(FuelOauthToken)
   axios
     .get(FUEL_API_BASE + '/FuelCheckRefData/v2/fuel/lovs', {
       headers: {
