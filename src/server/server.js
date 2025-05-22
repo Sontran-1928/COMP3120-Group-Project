@@ -587,6 +587,7 @@ returns: all petrol stations with that fuel type in that suburb/postcode
 */
 const getFuelAccessToken = () => {
   // calls nsw gov fuel API to authenticate
+  console.log("testing getting access token")
   axios
     .get(
       FUEL_API_BASE +
@@ -601,6 +602,7 @@ const getFuelAccessToken = () => {
     .then((response) => {
       // sets fuel token from response
       FuelOauthToken = response.data.access_token
+      console.log("access token got", FuelOauthToken)
     })
     .catch((error) => {
       // log error to console
