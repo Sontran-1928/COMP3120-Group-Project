@@ -28,7 +28,7 @@ function App () {
   const fetchHazards = () => {
     axios.get(URL + 'regional-lga-incident/open', {
       headers: {
-        apikey: process.env.REACT_APP_API_KEY
+        apikey: process.env.REACT-APP-API-KEY
       }
     })
       .then((response) => {
@@ -42,7 +42,7 @@ function App () {
   const fetchStations = () => {
     axios.get(URL + 'fuel/lovs', {
       headers: {
-        apikey: process.env.REACT_APP_API_KEY
+        apikey: process.env.REACT-APP-API-KEY
       }
     })
       .then((response) => {
@@ -56,7 +56,7 @@ function App () {
   const fetchFuelWidgetData = () => {
     axios.get(URL + 'fuel/prices', {
       headers: {
-        apikey: process.env.REACT_APP_API_KEY
+        apikey: process.env.REACT-APP-API-KEY
       }
     })
       .then((response) => {
