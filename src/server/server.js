@@ -10,11 +10,7 @@ const az_kv = require('@azure/keyvault-secrets');
 const credential = new az_identity.DefaultAzureCredential();
 const client = new az_kv.SecretClient('https://newsecretvault.vault.azure.net/', credential)
 
-client.getSecret('APIKEY').then(res =>{
-  console.log(res);
-}).catch(err => {
-  console.log("error occurred, ", err)
-});
+
 
 require('dotenv').config()
 
@@ -307,6 +303,12 @@ returns all current prices across all stations and petrol types in NSW.
 
 app.get('/api/fuel/prices', (req, res) => {
   // calls nsw gov fuel API
+  client.getSecret('APIKEY').then(res =>{
+    console.log(res);
+  }).catch(err => {
+    console.log("error occurred, ", err)
+  });
+  
   axios
     .get(FUEL_API_BASE + '/FuelPriceCheck/v2/fuel/prices', {
       headers: {
