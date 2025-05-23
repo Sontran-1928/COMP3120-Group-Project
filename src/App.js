@@ -26,6 +26,7 @@ function App () {
 
   // Axios .get for Hazards
   const fetchHazards = () => {
+    console.log("attempting to fetch hazards (regional-lga-incident)")
     axios.get(URL + 'regional-lga-incident/open', {
       headers: {
         apikey: process.env.REACT_APP_API_KEY
