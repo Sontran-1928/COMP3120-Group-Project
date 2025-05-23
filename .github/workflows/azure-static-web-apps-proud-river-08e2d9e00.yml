@@ -33,15 +33,15 @@ jobs:
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env:
-          APIKEY : ${{ secrets.APIKEY }}
-          FUELAPIKEY : ${{ secrets.FUELAPIKEY }}
-          FUELAPISECRETDEVELOPMENT : ${{ secrets.FUELAPISECRETDEVELOPMENT }}
-          FUELAPIURL : ${{ secrets.FUELAPIURL }}
-          LIVETRAFFICHAZARDSAPIKEY : ${{ secrets.LIVETRAFFICHAZARDSAPIKEY }}
-          LIVETRAFICAPIURL : ${{ secrets.LIVETRAFICAPIURL }}
-          REACTAPPAPIKEY : ${{ secrets.REACTAPPAPIKEY }}
-          FUELAPIAUTHORIZATIONHEADER : ${{ secrets.FUELAPIAUTHORIZATIONHEADER }}
-          REACTAPPFUELAPIAUTHORIZATIONHEADER : ${{ secrets.REACTAPPFUELAPIAUTHORIZATIONHEADER }}
+          API_KEY : ${{ secrets.API_KEY }}
+          FUEL_API_KEY : ${{ secrets.FUEL_API_KEY }}
+          FUEL_API_SECRET_DEVELOPMENT : ${{ secrets.FUEL_API_SECRET_DEVELOPMENT }}
+          FUEL_API_URL : ${{ secrets.FUEL_API_URL }}
+          LIVE_TRAFFIC_HAZARDS_API_KEY : ${{ secrets.LIVE_TRAFFIC_HAZARDS_API_KEY }}
+          LIVE_TRAFIC_API_URL : ${{ secrets.LIVE_TRAFIC_API_URL }}
+          REACT_APP_API_KEY : ${{ secrets.REACT_APP_API_KEY }}
+          FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.FUEL_API_AUTHORIZATION_HEADER }}
+          REACT_APP_FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.REACT_APP_FUEL_APIAUTHORIZATION_HEADER }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
