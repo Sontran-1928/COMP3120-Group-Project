@@ -34,7 +34,7 @@ const FUEL_TYPES = ['E10-U91', 'E10', 'U91', 'E85', 'P95-P98', 'P95', 'P98',
 // stores the current oauth token for the fuel api.
 let FuelOauthToken = ''
 
-// app.use(express.static("build"))
+app.use(express.static("build"))
 
 // sets CORS middleware.
 app.use(cors())
