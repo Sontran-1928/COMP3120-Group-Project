@@ -46,6 +46,8 @@ function App () {
       }
     })
       .then((response) => {
+        console.log("this is the response to fetch station,")
+        console.log(response)
         setStations(response.data.stations.items)
       })
       .catch(error => {
