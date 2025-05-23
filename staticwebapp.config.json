@@ -1,14 +1,1 @@
-{
-  "routes": [
-    {
-      "route": "/api/fuel/lovs",
-      "methods": [
-        "get"
-      ],
-      "statusCode": 200,
-      "headers": {
-        "apikey": "New2Ran5dOm33T83ST"
-      }
-    }
-  ]
-}
+{}
