@@ -46,15 +46,15 @@ jobs:
           github_id_token: ${{ steps.idtoken.outputs.result }}
           
         env:
-          API_KEY : ${{ secrets.API_KEY }}
-          FUEL_API_KEY : ${{ secrets.FUEL_API_KEY }}
-          FUEL_API_SECRET_DEVELOPMENT : ${{ secrets.FUEL_API_SECRET_DEVELOPMENT }}
-          FUEL_API_URL : ${{ secrets.FUEL_API_URL }}
-          LIVE_TRAFFIC_HAZARDS_API_KEY : ${{ secrets.LIVE_TRAFFIC_HAZARDS_API_KEY }}
-          LIVE_TRAFIC_API_URL : ${{ secrets.LIVE_TRAFIC_API_URL }}
-          REACT_APP_API_KEY : ${{ secrets.REACT_APP_API_KEY }}
-          FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.FUEL_API_AUTHORIZATION_HEADER }}
-          REACT_APP_FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.REACT_APP_FUEL_APIAUTHORIZATION_HEADER }}
+          API_KEY : ${{ secrets.APIKEY }}
+          FUEL_API_KEY : ${{ secrets.FUELAPIKEY }}
+          FUEL_API_SECRET_DEVELOPMENT : ${{ secrets.FUELAPISECRETDEVELOPMENT }}
+          FUEL_API_URL : ${{ secrets.FUELAPIURL }}
+          LIVE_TRAFFIC_HAZARDS_API_KEY : ${{ secrets.LIVETRAFFICHAZARDSAPIKEY }}
+          LIVE_TRAFIC_API_URL : ${{ secrets.LIVETRAFICAPIURL }}
+          REACT_APP_API_KEY : ${{ secrets.REACTAPPAPIKEY }}
+          FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.FUELAPIAUTHORIZATIONHEADER }}
+          REACT_APP_FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.REACTAPPFUELAPIAUTHORIZATIONHEADER }}
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
