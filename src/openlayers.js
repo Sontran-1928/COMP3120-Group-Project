@@ -233,6 +233,8 @@ const CreateMap = () => {
 
   // Fetch all fuel types using backend.
   const fetchFuelType = () => {
+    console.log("this is apikey ")
+    console.log(process.env.REACTAPPAPIKEY)
     axios.get(URL + 'fuel/lovs', {
       headers: {
         apikey: process.env.REACTAPPAPIKEY
