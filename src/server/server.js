@@ -420,7 +420,6 @@ returns all current fuel stations along with fueltypes and station brands.
 */
 app.get('/api/fuel/lovs', (req, res) => {
   // calls nsw gov fuel API
-  console.log("this is FuelOauthToken ", FuelOauthToken)
   axios
     .get(FUEL_API_BASE + '/FuelCheckRefData/v2/fuel/lovs', {
       headers: {
