@@ -13,16 +13,16 @@ const REFRESH_TOKEN_TIME = 36000000
 const cache = apicache.middleware
 
 // base urls for hazards and fuel api retrieved from .env
-const FUEL_API_BASE = process.env.FUELAPIURL
-const LIVE_TRAFFIC_API_BASE = process.env.LIVETRAFICAPIURL
+const FUEL_API_BASE = process.env.FUEL_API_URL
+const LIVE_TRAFFIC_API_BASE = process.env.LIVE_TRAFIC_API_URL
 
 // api keys for both hazards and fuel apis along with api key needed for clients.
-const API_KEY = process.env.APIKEY
-const LIVE_TRAFFIC_API_KEY = process.env.LIVETRAFFICHAZARDSAPIKEY
-const FUEL_API_KEY = process.env.FUELAPIKEY
+const API_KEY = process.env.API_KEY
+const LIVE_TRAFFIC_API_KEY = process.env.LIVE_TRAFFIC_HAZARDS_API_KEY
+const FUEL_API_KEY = process.env.FUEL_API_KEY
 
 // authorization header for fuel api that is sent with each request.
-const FUEL_API_AUTHORIZATION_HEADER = process.env.FUELAPIAUTHORIZATIONHEADER
+const FUEL_API_AUTHORIZATION_HEADER = process.env.FUEL_API_AUTHORIZATION_HEADER
 
 // used to keep track of current transactionId that is sent with each request to fuel api.
 let transactionid = 1

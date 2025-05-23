@@ -112,7 +112,7 @@ const CreateMap = () => {
     // Add additional data such as name and brand for popup uses.
     axios.get(URL + 'fuel/lovs', {
       headers: {
-        apikey: process.env.REACTAPPAPIKEY
+        apikey: process.env.REACT_APP_API_KEY
       }
     })
       .then((response) => {
@@ -130,7 +130,7 @@ const CreateMap = () => {
     // Add additional data such as street name, type, advices and more for popup uses.
     axios.get(URL + 'regional-lga-incident/open', {
       headers: {
-        apikey: process.env.REACTAPPAPIKEY
+        apikey: process.env.REACT_APP_API_KEY
       }
     })
       .then((response) => {
@@ -164,7 +164,7 @@ const CreateMap = () => {
           // Get the price whenever the user press on a marker for popup
           axios.get(URL + 'fuel/prices/station/' + checkFeature[0].get('code'), {
             headers: {
-              apikey: process.env.REACTAPPAPIKEY
+              apikey: process.env.REACT_APP_API_KEY
             }
           })
             .then((response) => {
@@ -233,11 +233,9 @@ const CreateMap = () => {
 
   // Fetch all fuel types using backend.
   const fetchFuelType = () => {
-    console.log("this is apikey ")
-    console.log(process.env.REACTAPPAPIKEY)
     axios.get(URL + 'fuel/lovs', {
       headers: {
-        apikey: process.env.REACTAPPAPIKEY
+        apikey: process.env.REACT_APP_API_KEY
       }
     })
       .then((response) => {
