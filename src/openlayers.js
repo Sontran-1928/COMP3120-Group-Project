@@ -134,6 +134,7 @@ const CreateMap = () => {
       }
     })
       .then((response) => {
+        console.log(response)
         for (let o = 0; o < response.data.features.length; o++) {
           const hazardData = response.data.features[o]
           trafficHazardMarker.getSource().addFeature(createHazardMarker(hazardData))

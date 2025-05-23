@@ -34,7 +34,7 @@ const FUEL_TYPES = ['E10-U91', 'E10', 'U91', 'E85', 'P95-P98', 'P95', 'P98',
 // stores the current oauth token for the fuel api.
 let FuelOauthToken = ''
 
-app.use(express.static("build"))
+//app.use(express.static("build"))
 
 // sets CORS middleware.
 app.use(cors())
@@ -265,6 +265,7 @@ GET request that calls NSW gov traffic hazards API and
 returns all current lGA related traffic hazards in regional areas.
 */
 app.get('/api/regional-lga-incident/open', (req, res) => {
+  console.log(LIVE_TRAFFIC_API_KEY)
   // calls nsw gov hazards API
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/regional-lga-incident/open', {
@@ -412,8 +413,6 @@ returns all current fuel stations along with fueltypes and station brands.
 */
 app.get('/api/fuel/lovs', (req, res) => {
   // calls nsw gov fuel API
-  console.log("testing fuel/lovs")
-  console.log(FUEL_API_KEY)
   axios
     .get(FUEL_API_BASE + '/FuelCheckRefData/v2/fuel/lovs', {
       headers: {
