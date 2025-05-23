@@ -55,4 +55,4 @@ jobs:
           app-name: 'NSW-ToolBox'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7B6C955BE842474599C330894F07E78C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_976FB7C88E4D4E24A471658496B6D64F }}
