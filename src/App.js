@@ -40,8 +40,6 @@ function App () {
   }
   // Axios .get for all Stations and details
   const fetchStations = () => {
-    console.log("this is apikey, ")
-    console.log(process.env.REACTAPPAPIKEY)
     axios.get(URL + 'fuel/lovs', {
       headers: {
         apikey: process.env.REACTAPPAPIKEY
