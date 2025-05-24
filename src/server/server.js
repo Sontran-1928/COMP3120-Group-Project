@@ -14,7 +14,7 @@ const cache = apicache.middleware
 
 // base urls for hazards and fuel api retrieved from .env
 const FUEL_API_BASE = process.env.FUEL_API_URL
-const LIVE_TRAFFIC_API_BASE = process.env.LIVE_TRAFIC_API_URL
+const LIVE_TRAFFIC_API_BASE = process.env.LIVE_TRAFFIC_API_URL
 
 // api keys for both hazards and fuel apis along with api key needed for clients.
 const API_KEY = process.env.API_KEY
@@ -34,15 +34,13 @@ const FUEL_TYPES = ['E10-U91', 'E10', 'U91', 'E85', 'P95-P98', 'P95', 'P98',
 // stores the current oauth token for the fuel api.
 let FuelOauthToken = ''
 
-//app.use(express.static("build"))
+app.use(express.static("build"))
 
 // sets CORS middleware.
 app.use(cors())
 
 // sets json middleware parser
 app.use(express.json())
-
-app.use(express.static('build'))
 
 /*
 middleware that intercepts all requests and checks if
@@ -265,7 +263,6 @@ GET request that calls NSW gov traffic hazards API and
 returns all current lGA related traffic hazards in regional areas.
 */
 app.get('/api/regional-lga-incident/open', (req, res) => {
-  console.log(LIVE_TRAFFIC_API_KEY)
   // calls nsw gov hazards API
   axios
     .get(LIVE_TRAFFIC_API_BASE + '/regional-lga-incident/open', {
@@ -428,7 +425,6 @@ app.get('/api/fuel/lovs', (req, res) => {
     .then((response) => {
       // increase transactionid count by 1.
       transactionid += 1
-
       // return data fom fuel API
       res.send(response.data)
     })
@@ -600,6 +596,7 @@ const getFuelAccessToken = () => {
     )
     .then((response) => {
       // sets fuel token from response
+      console.log(response.data.access_token)
       FuelOauthToken = response.data.access_token
     })
     .catch((error) => {
