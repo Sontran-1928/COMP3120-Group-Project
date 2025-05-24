@@ -37,6 +37,7 @@ jobs:
           REACT_APP_API_KEY : ${{ secrets.REACTAPPAPIKEY }}
           FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.FUELAPIAUTHORIZATIONHEADER }}
           REACT_APP_FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.REACTAPPFUELAPIAUTHORIZATIONHEADER }}
+          PORT : ${{ secrets.PORT }}
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
