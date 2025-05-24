@@ -596,7 +596,6 @@ const getFuelAccessToken = () => {
     )
     .then((response) => {
       // sets fuel token from response
-      console.log(response.data.access_token)
       FuelOauthToken = response.data.access_token
     })
     .catch((error) => {
