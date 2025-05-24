@@ -1,1 +1,13 @@
-{}
+{
+  "routes": [
+    {
+      "route": "/api/fuel/prices",
+      "methods": [
+        "get"
+      ],
+      "headers": {
+        "apikey": "New2Ran5dOm33T83ST"
+      }
+    }
+  ]
+}
