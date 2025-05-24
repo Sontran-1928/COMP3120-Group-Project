@@ -55,6 +55,7 @@ jobs:
           REACT_APP_API_KEY : ${{ secrets.REACTAPPAPIKEY }}
           FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.FUELAPIAUTHORIZATIONHEADER }}
           REACT_APP_FUEL_API_AUTHORIZATION_HEADER : ${{ secrets.REACTAPPFUELAPIAUTHORIZATIONHEADER }}
+          PORT : ${{ secrets.PORT }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
